@@ -1,12 +1,14 @@
 import React from "react";
 import { Route, Link, Outlet, Routes } from "react-router-dom";
 import HomePage from "../modules/homepage/HomePage";
+import People from "../modules/people/People";
 
 const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Outlet />}>
         <Route index element={<HomePage />} />
+        <Route path="people" element={<People />} />
       </Route>
       <Route path="*" element={<NoMatch />} />
     </Routes>
