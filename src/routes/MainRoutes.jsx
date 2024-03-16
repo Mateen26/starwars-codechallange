@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Link, Outlet, Routes } from "react-router-dom";
 import HomePage from "../modules/homepage/HomePage";
-import People from "../modules/people/People";
+import Characters from "../modules/Characters/Characters";
 import Planets from "../modules/planets/Planets";
 
 const MainRoutes = () => {
@@ -9,7 +9,7 @@ const MainRoutes = () => {
     <Routes>
       <Route path="/" element={<Outlet />}>
         <Route index element={<HomePage />} />
-        <Route path="people" element={<People />} />
+        <Route path="Characters" element={<Characters />} />
         <Route path="planets" element={<Planets />} />
       </Route>
       <Route path="*" element={<NoMatch />} />

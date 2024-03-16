@@ -3,8 +3,11 @@ import { useDataContext } from "../../context/DataContext";
 import tatooine from "../../assets/images/Tatooine.jpg";
 import { useMediaQuery } from "react-responsive";
 import "./Planets.css";
+import { Spinner } from "react-bootstrap";
+
 const Planets = () => {
-  const { loadedData, loading, loadData } = useDataContext();
+  const { loadedData, loading, loadData, loadMore } = useDataContext();
+  console.log("🚀 ~ loadedData:", loadedData);
   const imgURL = "https://starwars-visualguide.com/assets/img/planets/";
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
@@ -12,6 +15,10 @@ const Planets = () => {
     loadData("planets");
     // eslint-disable-next-line
   }, []);
+
+  const onImageError = (e) => {
+    e.target.src = tatooine;
+  };
 
   function getId(url) {
     return url.split("/")[url.split("/").length - 2];
@@ -22,13 +29,29 @@ const Planets = () => {
       event.currentTarget.classList.toggle("hover");
     }
   };
+
+  const handleLoadMore = () => {
+    if (loadedData.next) {
+      loadMore(loadedData.next);
+    }
+  };
+
   return (
     <>
       <section id="starWars" className="pb-5">
         <div className="container">
           <div className="row">
             {loading ? (
-              <p>Loading...</p>
+              <>
+                <div className="d-flex">
+                  <p>Please wait...</p>
+                  <Spinner
+                    variant="warning"
+                    className="ms-2"
+                    animation="grow"
+                  />
+                </div>
+              </>
             ) : loadedData.results && loadedData.results.length > 0 ? (
               loadedData.results.map((planets) => (
                 <div key={planets.name} className="col-xs-12 col-sm-6 col-md-4">
@@ -49,6 +72,7 @@ const Planets = () => {
                                     ? tatooine
                                     : `${imgURL + getId(planets.url)}.jpg`
                                 }
+                                onError={onImageError}
                                 alt="planet"
                               />
                             </p>
@@ -85,6 +109,13 @@ const Planets = () => {
               ))
             ) : (
               <p>No data available.</p>
+            )}
+            {!loading && loadedData.next && (
+              <div className="col-12 text-center mt-3">
+                <button className="btn-container" onClick={handleLoadMore}>
+                  Load More
+                </button>
+              </div>
             )}
           </div>
         </div>

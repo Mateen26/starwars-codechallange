@@ -28,8 +28,30 @@ export const DataProvider = ({ children }) => {
       });
   };
 
+  const loadMore = (url) => {
+    setLoading(true);
+    axios
+      .get(url)
+      .then((response) => {
+        if (response?.status === 200) {
+          setLoadedData((prevData) => ({
+            ...prevData,
+            results: [...prevData.results, ...response.data.results],
+            next: response.data.next,
+          }));
+        } else {
+          alert("Error Fetching More Data From Api");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  };
+
   return (
-    <DataContext.Provider value={{ loadedData, loading, loadData }}>
+    <DataContext.Provider value={{ loadedData, loading, loadData, loadMore }}>
       {children}
     </DataContext.Provider>
   );
