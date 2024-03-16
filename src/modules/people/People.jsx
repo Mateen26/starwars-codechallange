@@ -1,12 +1,21 @@
 import React, { useEffect } from "react";
 import { useDataContext } from "../../context/DataContext";
 import "./People.css";
+import { useMediaQuery } from "react-responsive";
 const People = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const { loadedData, loading, loadData } = useDataContext();
   const imgURL = "https://starwars-visualguide.com/assets/img/characters/";
   useEffect(() => {
     loadData("people");
+    // eslint-disable-next-line
   }, []);
+
+  const toggleHover = (event) => {
+    if (isMobile) {
+      event.currentTarget.classList.toggle("hover");
+    }
+  };
 
   function getId(url) {
     return url.split("/")[url.split("/").length - 2];
@@ -14,8 +23,8 @@ const People = () => {
 
   return (
     <>
-      <section id="starWars" class="pb-5">
-        <div class="container">
+      <section id="starWars" className="pb-5">
+        <div className="container">
           <div className="row">
             {loading ? (
               <p>Loading...</p>
@@ -24,7 +33,8 @@ const People = () => {
                 <div key={person.name} className="col-xs-12 col-sm-6 col-md-4">
                   <div
                     className="image-flip"
-                    onTouchStart="this.classList.toggle('hover');"
+                    onTouchStart={toggleHover}
+                    onClick={!isMobile ? toggleHover : undefined}
                   >
                     <div className="mainflip">
                       <div className="frontside">
@@ -34,7 +44,7 @@ const People = () => {
                               <img
                                 className="img-fluid"
                                 src={`${imgURL + getId(person.url)}.jpg`}
-                                alt="card image"
+                                alt="people"
                               />
                             </p>
                             <h4 className="card-title">{person.name}</h4>

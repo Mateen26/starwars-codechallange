@@ -1,0 +1,14 @@
+.planets-images {
+  width: 339px !important;
+  height: 269px !important;
+  border-radius: 10% !important;
+}
+.planets-card-body {
+  background-color: #000 !important;
+}
+
+.card-body {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

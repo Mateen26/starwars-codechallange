@@ -75,6 +75,7 @@
   }
 
   .nav-links {
+    z-index: 9;
     position: absolute;
     right: 0;
     top: 60px;

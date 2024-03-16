@@ -37,6 +37,9 @@ const Header = () => {
                 <NavLink to="/people">People</NavLink>
               </li>
               <li>
+                <NavLink to="/planets">Planets</NavLink>
+              </li>
+              <li>
                 <NavLink to="/films">Films</NavLink>
               </li>
               <li>
