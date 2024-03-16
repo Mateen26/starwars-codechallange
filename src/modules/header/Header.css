@@ -43,11 +43,11 @@
   text-decoration: none;
 }
 .nav-links ul a:hover {
-  color: #dbe04a;
+  color: #fade4b;
 }
 
 .nav-links ul a.active {
-  color: #dbe04a;
+  color: #fade4b;
   font-weight: 500;
   position: relative;
 }

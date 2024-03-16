@@ -45,7 +45,7 @@
 
 .footerLink:hover {
   font-size: 1rem;
-  color: #dbe04a;
+  color: #fade4b;
 }
 
 .footer-heading h2 {
@@ -84,10 +84,10 @@
 }
 
 .heading-clr {
-  color: #dbe04a !important;
+  color: #fade4b !important;
 }
 .green-text {
-  color: #dbe04a !important;
+  color: #fade4b !important;
 }
 .location-con {
   position: relative;
