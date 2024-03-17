@@ -46,7 +46,7 @@ const HomePage = () => {
   return (
     <>
       <div className="container homepage-container">
-        <h5 className="my-4">
+        <h5 className="my-4 mobile-heading">
           All OF YOUR STAR WARS FAVORITES NOW STREAMING ON DISNEY+
         </h5>{" "}
         <Slider {...settings}>
@@ -119,7 +119,7 @@ const HomePage = () => {
             {renderCards(planetData)}
           </div>
         </div>
-        <div className="mt-5">
+        <div className="mt-5 mb-5">
           <div
             onClick={() => handleClick("starships")}
             role="button"

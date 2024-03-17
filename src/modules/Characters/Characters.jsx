@@ -81,61 +81,52 @@ const People = () => {
                   />
                 </div>
               </>
-            ) : loadedData.results && loadedData.results.length > 0 ? (
-              loadedData.results.map((person) => (
-                <>
+            ) : loadedData?.results && loadedData?.results?.length > 0 ? (
+              loadedData?.results.map((person) => (
+                <div key={person?.url} className="col-xs-12 col-sm-6 col-md-4">
                   <div
-                    key={person.name}
-                    className="col-xs-12 col-sm-6 col-md-4"
+                    className="image-flip"
+                    onTouchStart={toggleHover}
+                    onClick={!isMobile ? toggleHover : undefined}
                   >
-                    <div
-                      className="image-flip"
-                      onTouchStart={toggleHover}
-                      onClick={!isMobile ? toggleHover : undefined}
-                    >
-                      <div className="mainflip">
-                        <div className="frontside">
-                          <div className="card">
-                            <div className="card-body text-center">
-                              <p className="mt-5">
-                                <img
-                                  className="img-fluid"
-                                  src={`${imgURL + getId(person.url)}.jpg`}
-                                  alt="people"
-                                />
-                              </p>
-                              <h4 className="card-title">{person.name}</h4>
-                              <p className="card-text">{person.height}</p>
-                            </div>
+                    <div className="mainflip">
+                      <div className="frontside">
+                        <div className="card">
+                          <div className="card-body text-center">
+                            <p className="mt-5">
+                              <img
+                                className="img-fluid"
+                                src={`${imgURL + getId(person.url)}.jpg`}
+                                alt="people"
+                              />
+                            </p>
+                            <h4 className="card-title">{person.name}</h4>
+                            <p className="card-text">{person.height}</p>
                           </div>
                         </div>
-                        <div className="backside">
-                          <div className="card">
-                            <div className="card-body text-center">
-                              <h4 className="card-title">{person.name}</h4>
-                              <p className="card-text">
-                                Height: {person.height}
-                              </p>
-                              <p className="card-text">
-                                Eye Color: {person.eye_color}
-                              </p>
-                              <p className="card-text">
-                                Gender: {person.gender}
-                              </p>
-                              <p className="card-text">Mass: {person.mass}</p>
-                              <button
-                                className="btn-container-details"
-                                onClick={() => handleEntryClick(person)}
-                              >
-                                Details
-                              </button>
-                            </div>
+                      </div>
+                      <div className="backside">
+                        <div className="card">
+                          <div className="card-body text-center">
+                            <h4 className="card-title">{person.name}</h4>
+                            <p className="card-text">Height: {person.height}</p>
+                            <p className="card-text">
+                              Eye Color: {person.eye_color}
+                            </p>
+                            <p className="card-text">Gender: {person.gender}</p>
+                            <p className="card-text">Mass: {person.mass}</p>
+                            <button
+                              className="btn-container-details"
+                              onClick={() => handleEntryClick(person)}
+                            >
+                              Details
+                            </button>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               ))
             ) : (
               <p>No data available.</p>

@@ -42,11 +42,11 @@ const DetailsPage = () => {
         </>
       ) : (
         selectedCharacter && (
-          <div class="container mt-5 mb-5">
-            <div class="row">
-              <div class="profile-nav col-md-3">
-                <div class="panel">
-                  <div class="user-heading">
+          <div className="container mt-5 mb-5">
+            <div className="row">
+              <div className="profile-nav col-md-3">
+                <div className="panel">
+                  <div className="user-heading">
                     <a href="/">
                       <img
                         src={`${imgURL + getId(selectedCharacter.url)}.jpg`}
@@ -65,17 +65,17 @@ const DetailsPage = () => {
                   </div>
                 </div>
               </div>
-              <div class="profile-info col-md-9">
-                <div class="">
-                  <div class="bio-graph-heading profile-data-heading ">
+              <div className="profile-info col-md-9">
+                <div className="">
+                  <div className="bio-graph-heading profile-data-heading ">
                     <div className="back-button" onClick={handleBack}>
                       <SkipBackwardCircleFill size={20} /> Go Back
                     </div>
                     Details About {selectedCharacter?.name}
                   </div>
-                  <div class="panel-body bio-graph-info card card-background">
-                    <div class="row ms-3 mt-2">
-                      <div class="bio-row">
+                  <div className="panel-body bio-graph-info card card-background">
+                    <div className="row ms-3 mt-2">
+                      <div className="bio-row">
                         <p>
                           <span className="profile-data-heading">Name </span>:{" "}
                           {selectedCharacter?.name}
@@ -100,7 +100,7 @@ const DetailsPage = () => {
                           </span>
                         </p>
                       ) : selectedDetailsType === "characters" ? (
-                        <div class="bio-row">
+                        <div className="bio-row">
                           <p>
                             <span className="profile-data-heading">
                               Height{" "}
@@ -112,7 +112,7 @@ const DetailsPage = () => {
                         ""
                       )}
 
-                      <div class="bio-row">
+                      <div className="bio-row">
                         <p>
                           <span className="profile-data-heading">
                             Total Movies{" "}
@@ -136,7 +136,7 @@ const DetailsPage = () => {
                         </p>
                       </div>
 
-                      <div class="bio-row">
+                      <div className="bio-row">
                         <p>
                           <span className="profile-data-heading">
                             Directors Of Each Movie{" "}
@@ -151,7 +151,7 @@ const DetailsPage = () => {
                           ))}
                         </p>
                       </div>
-                      <div class="bio-row">
+                      <div className="bio-row">
                         <p>
                           <span className="profile-data-heading">
                             Producers Of Each Movie{" "}
@@ -170,9 +170,9 @@ const DetailsPage = () => {
                   </div>
                   {selectedDetailsType === "starships" && (
                     <>
-                      <div class="panel-body bio-graph-info mt-5 card card-background">
-                        <div class="row ms-3">
-                          <div class="bio-row">
+                      <div className="panel-body bio-graph-info mt-5 card card-background">
+                        <div className="row ms-3">
+                          <div className="bio-row">
                             <span className="profile-data-heading">
                               Ship Details :
                             </span>
@@ -207,8 +207,8 @@ const DetailsPage = () => {
                                 <b>Passengers:</b>{" "}
                                 {selectedCharacter.passengers}
                                 <br />
-                                <b>Starship class:</b>{" "}
-                                {selectedCharacter.starship_class}
+                                <b>Starship className:</b>{" "}
+                                {selectedCharacter.starship_className}
                                 <br />
                                 <br />
                               </span>
@@ -218,10 +218,10 @@ const DetailsPage = () => {
                       </div>
                     </>
                   )}
-                  <div class="panel-body bio-graph-info mt-5 card card-background">
-                    <div class="row ms-3">
+                  <div className="panel-body bio-graph-info mt-5 card card-background">
+                    <div className="row ms-3">
                       {selectedDetailsType === "characters" ? (
-                        <div class="bio-row">
+                        <div className="bio-row">
                           <p>
                             <span className="profile-data-heading">
                               Total Starships{" "}
@@ -235,7 +235,7 @@ const DetailsPage = () => {
 
                       {selectedDetailsType === "characters" ? (
                         <>
-                          <div class="bio-row">
+                          <div className="bio-row">
                             <span className="profile-data-heading">
                               {selectedCharacter?.starships?.length > 0 &&
                                 "Ships Details :"}
@@ -269,7 +269,8 @@ const DetailsPage = () => {
                                   <br />
                                   <b>Passengers:</b> {e.passengers}
                                   <br />
-                                  <b>Starship Class:</b> {e.starship_class}
+                                  <b>Starship className:</b>{" "}
+                                  {e.starship_className}
                                   <br />
                                 </span>
                               ))}
@@ -277,7 +278,7 @@ const DetailsPage = () => {
                           </div>
                         </>
                       ) : selectedDetailsType === "planets" ? (
-                        <div class="bio-row">
+                        <div className="bio-row">
                           <span className="profile-data-heading">
                             {selectedCharacter?.films?.length > 0 &&
                               "Movies Details :"}
@@ -299,7 +300,7 @@ const DetailsPage = () => {
                           </p>
                         </div>
                       ) : selectedDetailsType === "starships" ? (
-                        <div class="bio-row">
+                        <div className="bio-row">
                           <span className="profile-data-heading">
                             {selectedCharacter?.films?.length > 0 &&
                               "Movies Details :"}
