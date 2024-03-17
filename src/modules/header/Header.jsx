@@ -40,10 +40,10 @@ const Header = () => {
                 <NavLink to="/planets">Planets</NavLink>
               </li>
               <li>
-                <NavLink to="/films">Films</NavLink>
+                <NavLink to="/starships">Starships</NavLink>
               </li>
               <li>
-                <NavLink to="/starships">Starships</NavLink>
+                <NavLink to="/films">Films</NavLink>
               </li>
               <li>
                 <NavLink to="/vehicles">Vehicles</NavLink>

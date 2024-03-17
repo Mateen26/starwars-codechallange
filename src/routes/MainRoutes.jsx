@@ -3,6 +3,8 @@ import { Route, Link, Outlet, Routes } from "react-router-dom";
 import HomePage from "../modules/homepage/HomePage";
 import Characters from "../modules/Characters/Characters";
 import Planets from "../modules/planets/Planets";
+import StarShips from "../modules/starships/StarShips";
+import DetailsPage from "../common/DetailsPage";
 
 const MainRoutes = () => {
   return (
@@ -11,6 +13,8 @@ const MainRoutes = () => {
         <Route index element={<HomePage />} />
         <Route path="Characters" element={<Characters />} />
         <Route path="planets" element={<Planets />} />
+        <Route path="starships" element={<StarShips />} />
+        <Route path="details" element={<DetailsPage />} />
       </Route>
       <Route path="*" element={<NoMatch />} />
     </Routes>
