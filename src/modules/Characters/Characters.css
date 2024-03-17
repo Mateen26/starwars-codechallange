@@ -47,12 +47,14 @@ section .section-title {
   transition: 1s;
   transform-style: preserve-3d;
   position: relative;
+  transform: perspective(1000px);
 }
 
 .frontside {
   position: relative;
   -webkit-transform: rotateY(0deg);
   -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
   z-index: 2;
   cursor: pointer;
   margin-bottom: 30px;
@@ -100,6 +102,11 @@ section .section-title {
   min-width: 416px;
 }
 
+@media (max-width: 768px) {
+  .backside .card {
+    min-width: 350px;
+  }
+}
 .backside .card a {
   font-size: 18px;
   color: #fff !important;

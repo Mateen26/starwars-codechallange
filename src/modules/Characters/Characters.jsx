@@ -3,9 +3,22 @@ import { useDataContext } from "../../context/DataContext";
 import "./Characters.css";
 import { useMediaQuery } from "react-responsive";
 import { Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { FetchData } from "./../../helper/FetchData";
+
 const People = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const { loadedData, loading, loadData, loadMore } = useDataContext();
+  const navigate = useNavigate();
+
+  const {
+    loadedData,
+    loading,
+    loadData,
+    loadMore,
+    setSelectedData,
+    setSelectedCharacter,
+    setLoading,
+  } = useDataContext();
   console.log("🚀 ~ loadedData:", loadedData);
   const imgURL = "https://starwars-visualguide.com/assets/img/characters/";
 
@@ -27,6 +40,25 @@ const People = () => {
   const handleLoadMore = () => {
     if (loadedData.next) {
       loadMore(loadedData.next);
+    }
+  };
+
+  const handleEntryClick = async (person) => {
+    try {
+      setLoading(true);
+      setSelectedCharacter(person);
+      const result = await FetchData(person);
+      if (result) {
+        setSelectedData(result);
+        navigate("/details");
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setSelectedData([]);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Failed to fetch data:", error);
     }
   };
 
@@ -88,9 +120,12 @@ const People = () => {
                                 Gender: {person.gender}
                               </p>
                               <p className="card-text">Mass: {person.mass}</p>
-                              <p className="card-text">
-                                Skin Color: {person.skin_color}
-                              </p>
+                              <button
+                                className="btn-container-details"
+                                onClick={() => handleEntryClick(person)}
+                              >
+                                Details
+                              </button>
                             </div>
                           </div>
                         </div>

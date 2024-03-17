@@ -8,9 +8,10 @@ export const useDataContext = () => useContext(DataContext);
 export const DataProvider = ({ children }) => {
   const [loadedData, setLoadedData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [selectedData, setSelectedData] = useState([]);
 
   const loadData = (apiName) => {
-    debugger;
     setLoading(true);
     axios
       .get(`https://swapi.dev/api/${apiName}`)
@@ -51,7 +52,19 @@ export const DataProvider = ({ children }) => {
   };
 
   return (
-    <DataContext.Provider value={{ loadedData, loading, loadData, loadMore }}>
+    <DataContext.Provider
+      value={{
+        loadedData,
+        loading,
+        loadData,
+        loadMore,
+        setSelectedCharacter,
+        selectedCharacter,
+        setSelectedData,
+        selectedData,
+        setLoading,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

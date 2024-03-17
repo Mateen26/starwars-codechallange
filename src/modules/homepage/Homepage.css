@@ -32,6 +32,22 @@
   transform: translateY(-2px);
   animation: all 0.5 ease-in-out;
 }
+
+.btn-container-details {
+  margin-top: 0.5rem;
+  min-width: 200px;
+  height: 45px;
+  background-color: #fade4b;
+  border: 1px solid transparent;
+  color: #000000;
+  border-radius: 30px;
+  font-size: 19px;
+  animation: all 0.5 ease-in-out;
+}
+.btn-container-details:hover {
+  transform: translateY(-2px);
+  animation: all 0.5 ease-in-out;
+}
 .image {
   display: block;
   width: 100%;
