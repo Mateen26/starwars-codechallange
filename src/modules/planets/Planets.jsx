@@ -6,6 +6,7 @@ import "./Planets.css";
 import { Spinner } from "react-bootstrap";
 import { FetchData } from "../../helper/FetchData";
 import { useNavigate } from "react-router-dom";
+import { scrollToTop } from "../../helper/HelperFunctions";
 
 const Planets = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Planets = () => {
 
   useEffect(() => {
     loadData("planets");
+    scrollToTop();
     // eslint-disable-next-line
   }, []);
 

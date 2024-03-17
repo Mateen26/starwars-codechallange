@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import { Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FetchData } from "./../../helper/FetchData";
+import { scrollToTop } from "../../helper/HelperFunctions";
 
 const People = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -24,6 +25,7 @@ const People = () => {
 
   useEffect(() => {
     loadData("people");
+    scrollToTop();
     // eslint-disable-next-line
   }, []);
 

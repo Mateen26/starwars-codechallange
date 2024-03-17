@@ -62,3 +62,23 @@
 .btn-container-two {
   margin-left: 5rem;
 }
+
+.homepage-card {
+  background: #222;
+  border: none;
+  color: rgba(250, 250, 250, 0.8);
+  margin-bottom: 2rem;
+  transition: transform 0.4s ease;
+}
+.homepage-card img {
+  height: 100%;
+  width: 100%;
+}
+.homepage-card-text {
+  font-size: 1.3rem;
+}
+
+.homepage-card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.4s ease;
+}

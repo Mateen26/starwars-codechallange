@@ -9,7 +9,17 @@ import badbatch from "../../assets/images/badbatch.jpeg";
 import imperial from "../../assets/images/imperial.jpeg";
 import obiwan from "../../assets/images/obiwan.jpeg";
 import badBatchLogo from "../../assets/images/logo-bad-batch.png";
+import { ArrowRightCircleFill } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
+import HomePageCards from "../../common/homePagecards/HomePageCards";
+import {
+  characterData,
+  planetData,
+  starShipData,
+} from "../../common/homePagecards/HomeCardsData";
 const HomePage = () => {
+  const navigate = useNavigate();
+
   const settings = {
     autoPlay: true,
     dots: true,
@@ -19,6 +29,20 @@ const HomePage = () => {
     slidesToScroll: 1,
   };
 
+  const handleClick = (value) => {
+    navigate(`/${value}`);
+  };
+
+  const renderCards = (data) => {
+    return data.map((item, index) => (
+      <HomePageCards
+        key={index}
+        imageSrc={item.imageSrc}
+        title={item.title}
+        description={item.description}
+      />
+    ));
+  };
   return (
     <>
       <div className="container homepage-container">
@@ -69,6 +93,45 @@ const HomePage = () => {
             <img src={obiwan} alt="" />
           </div>
         </Slider>
+        <div className="mt-5">
+          <div
+            onClick={() => handleClick("Characters")}
+            role="button"
+            className="d-flex justify-content-end align-items-center mb-2"
+          >
+            <h4>View All</h4>
+            <ArrowRightCircleFill className="ms-2" />
+          </div>
+          <div className="row d-flex justify-content-between">
+            {renderCards(characterData)}
+          </div>
+        </div>
+        <div className="mt-5">
+          <div
+            onClick={() => handleClick("planets")}
+            role="button"
+            className="d-flex justify-content-end align-items-center mb-2"
+          >
+            <h4>View All</h4>
+            <ArrowRightCircleFill className="ms-2" />
+          </div>
+          <div className="row d-flex justify-content-between">
+            {renderCards(planetData)}
+          </div>
+        </div>
+        <div className="mt-5">
+          <div
+            onClick={() => handleClick("starships")}
+            role="button"
+            className="d-flex justify-content-end align-items-center mb-2"
+          >
+            <h4>View All</h4>
+            <ArrowRightCircleFill className="ms-2" />
+          </div>
+          <div className="row d-flex justify-content-between">
+            {renderCards(starShipData)}
+          </div>
+        </div>
       </div>
     </>
   );

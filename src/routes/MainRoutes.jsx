@@ -4,7 +4,7 @@ import HomePage from "../modules/homepage/HomePage";
 import Characters from "../modules/Characters/Characters";
 import Planets from "../modules/planets/Planets";
 import StarShips from "../modules/starships/StarShips";
-import DetailsPage from "../common/DetailsPage";
+import DetailsPage from "../common/detailsPage/DetailsPage";
 
 const MainRoutes = () => {
   return (

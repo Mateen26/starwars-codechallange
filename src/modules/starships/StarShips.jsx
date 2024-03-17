@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import { Spinner } from "react-bootstrap";
 import { FetchData } from "../../helper/FetchData";
 import { useNavigate } from "react-router-dom";
+import { scrollToTop } from "../../helper/HelperFunctions";
 
 const StarShips = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const StarShips = () => {
 
   useEffect(() => {
     loadData("starships");
+    scrollToTop();
     // eslint-disable-next-line
   }, []);
 

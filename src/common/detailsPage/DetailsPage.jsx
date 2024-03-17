@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { useDataContext } from "../context/DataContext";
+import { useDataContext } from "../../context/DataContext";
 import "./DetailsPage.css";
 import { SkipBackwardCircleFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
-import { scrollToTop } from "../helper/HelperFunctions";
+import { scrollToTop } from "../../helper/HelperFunctions";
 import { Spinner } from "react-bootstrap";
-import starDestroyer from "../assets/images/Star-Destroyer.jpeg";
-import tatootine from "../assets/images/Tatooine.jpg";
+import starDestroyer from "../../assets/images/Star-Destroyer.jpeg";
+import tatootine from "../../assets/images/Tatooine.jpg";
 const DetailsPage = () => {
   const { selectedData, selectedCharacter, loading, selectedDetailsType } =
     useDataContext();
