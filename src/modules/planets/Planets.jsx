@@ -4,9 +4,22 @@ import tatooine from "../../assets/images/Tatooine.jpg";
 import { useMediaQuery } from "react-responsive";
 import "./Planets.css";
 import { Spinner } from "react-bootstrap";
+import { FetchData } from "../../helper/FetchData";
+import { useNavigate } from "react-router-dom";
 
 const Planets = () => {
-  const { loadedData, loading, loadData, loadMore } = useDataContext();
+  const navigate = useNavigate();
+
+  const {
+    loadedData,
+    loading,
+    loadData,
+    loadMore,
+    setSelectedData,
+    setSelectedCharacter,
+    setLoading,
+    setSelectedDetailsType,
+  } = useDataContext();
   console.log("🚀 ~ loadedData:", loadedData);
   const imgURL = "https://starwars-visualguide.com/assets/img/planets/";
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -33,6 +46,26 @@ const Planets = () => {
   const handleLoadMore = () => {
     if (loadedData.next) {
       loadMore(loadedData.next);
+    }
+  };
+
+  const handleEntryClick = async (planets) => {
+    try {
+      setLoading(true);
+      setSelectedDetailsType("planets");
+      setSelectedCharacter(planets);
+      const result = await FetchData(planets);
+      if (result) {
+        setSelectedData(result);
+        navigate("/details");
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setSelectedData([]);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Failed to fetch data:", error);
     }
   };
 
@@ -97,9 +130,12 @@ const Planets = () => {
                             <p className="card-text">
                               Rotation Period: {planets.rotation_period}
                             </p>
-                            <p className="card-text">
-                              Population: {planets.population}
-                            </p>
+                            <button
+                              className="btn-container-details"
+                              onClick={() => handleEntryClick(planets)}
+                            >
+                              Details
+                            </button>
                           </div>
                         </div>
                       </div>

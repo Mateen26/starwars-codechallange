@@ -10,6 +10,7 @@ export const DataProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [selectedData, setSelectedData] = useState([]);
+  const [selectedDetailsType, setSelectedDetailsType] = useState("");
 
   const loadData = (apiName) => {
     setLoading(true);
@@ -63,6 +64,8 @@ export const DataProvider = ({ children }) => {
         setSelectedData,
         selectedData,
         setLoading,
+        setSelectedDetailsType,
+        selectedDetailsType,
       }}
     >
       {children}

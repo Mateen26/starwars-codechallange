@@ -18,6 +18,7 @@ const People = () => {
     setSelectedData,
     setSelectedCharacter,
     setLoading,
+    setSelectedDetailsType,
   } = useDataContext();
   console.log("🚀 ~ loadedData:", loadedData);
   const imgURL = "https://starwars-visualguide.com/assets/img/characters/";
@@ -46,6 +47,7 @@ const People = () => {
   const handleEntryClick = async (person) => {
     try {
       setLoading(true);
+      setSelectedDetailsType("characters");
       setSelectedCharacter(person);
       const result = await FetchData(person);
       if (result) {
