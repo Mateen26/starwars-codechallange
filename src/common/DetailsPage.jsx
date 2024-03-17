@@ -5,12 +5,11 @@ import { SkipBackwardCircleFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { scrollToTop } from "../helper/HelperFunctions";
 import { Spinner } from "react-bootstrap";
-
+import starDestroyer from "../assets/images/Star-Destroyer.jpeg";
+import tatootine from "../assets/images/Tatooine.jpg";
 const DetailsPage = () => {
   const { selectedData, selectedCharacter, loading, selectedDetailsType } =
     useDataContext();
-  console.log("🚀 ~ selectedData:", selectedData);
-  console.log("🚀 ~ selectedEntry:", selectedCharacter);
   const navigate = useNavigate();
 
   const imgURL = `https://starwars-visualguide.com/assets/img/${selectedDetailsType}/`;
@@ -26,6 +25,11 @@ const DetailsPage = () => {
   useEffect(() => {
     scrollToTop();
   }, []);
+
+  const onImageError = (e) => {
+    e.target.src =
+      selectedDetailsType === "starships" ? starDestroyer : tatootine;
+  };
 
   return (
     <div>
@@ -47,6 +51,7 @@ const DetailsPage = () => {
                       <img
                         src={`${imgURL + getId(selectedCharacter.url)}.jpg`}
                         alt="people"
+                        onError={onImageError}
                       />
                     </a>
                     <h1>{selectedCharacter?.name}</h1>
@@ -139,7 +144,7 @@ const DetailsPage = () => {
                           :{" "}
                           {selectedData?.filmsData?.map((e, index) => (
                             <span key={index}>
-                              {e.director}
+                              {e.director}&nbsp;
                               {index !== selectedData.filmsData.length - 1 &&
                                 ", "}
                             </span>
@@ -154,7 +159,7 @@ const DetailsPage = () => {
                           :{" "}
                           {selectedData?.filmsData?.map((e, index) => (
                             <span key={index}>
-                              {e.producer}
+                              {e.producer}&nbsp;
                               {index !== selectedData.filmsData.length - 1 &&
                                 ", "}
                             </span>
@@ -163,6 +168,56 @@ const DetailsPage = () => {
                       </div>
                     </div>
                   </div>
+                  {selectedDetailsType === "starships" && (
+                    <>
+                      <div class="panel-body bio-graph-info mt-5 card card-background">
+                        <div class="row ms-3">
+                          <div class="bio-row">
+                            <span className="profile-data-heading">
+                              Ship Details :
+                            </span>
+                            <p>
+                              <span className="styling-ship-details">
+                                <b>Cargo Capacity:</b>{" "}
+                                {selectedCharacter.cargo_capacity} {","}
+                                &nbsp;
+                                <b>Consumables:</b>{" "}
+                                {selectedCharacter.consumables} <br />
+                                <b>Cost In Credits:</b>{" "}
+                                {selectedCharacter.cost_in_credits}
+                                {","} &nbsp;
+                                <b>Crew:</b> {selectedCharacter.crew}
+                                <br />
+                                <b>Hyperdrive Rating:</b>{" "}
+                                {selectedCharacter.hyperdrive_rating}
+                                {","}
+                                &nbsp;
+                                <b>Length:</b> {selectedCharacter.length}
+                                <br />
+                                <b>Manufacturer:</b>{" "}
+                                {selectedCharacter.manufacturer}
+                                {","}
+                                &nbsp;
+                                <b>Max speed:</b>{" "}
+                                {selectedCharacter.max_atmosphering_speed}
+                                <br />
+                                <b>Model:</b> {selectedCharacter.model}
+                                {","}
+                                &nbsp;
+                                <b>Passengers:</b>{" "}
+                                {selectedCharacter.passengers}
+                                <br />
+                                <b>Starship class:</b>{" "}
+                                {selectedCharacter.starship_class}
+                                <br />
+                                <br />
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                   <div class="panel-body bio-graph-info mt-5 card card-background">
                     <div class="row ms-3">
                       {selectedDetailsType === "characters" ? (
@@ -177,6 +232,7 @@ const DetailsPage = () => {
                       ) : (
                         ""
                       )}
+
                       {selectedDetailsType === "characters" ? (
                         <>
                           <div class="bio-row">
@@ -232,6 +288,28 @@ const DetailsPage = () => {
                                 key={e.title}
                                 className="styling-ship-details"
                               >
+                                <b>Name:</b> {e.title}
+                                {","}&nbsp; <br />
+                                <b>director:</b> {e.director} {","}&nbsp; <br />
+                                <b>release_date:</b> {e.release_date} {","}
+                                &nbsp;
+                                <br />
+                              </span>
+                            ))}
+                          </p>
+                        </div>
+                      ) : selectedDetailsType === "starships" ? (
+                        <div class="bio-row">
+                          <span className="profile-data-heading">
+                            {selectedCharacter?.films?.length > 0 &&
+                              "Movies Details :"}
+                          </span>
+                          <p>
+                            {selectedData?.filmsData?.map((e, index) => (
+                              <span
+                                key={e.title}
+                                className="styling-ship-details"
+                              >
                                 <b>Name:</b> {e.title}&nbsp; <br />
                                 <b>director:</b> {e.director} <br />
                                 <b>release_date:</b> {e.release_date}
@@ -241,7 +319,7 @@ const DetailsPage = () => {
                           </p>
                         </div>
                       ) : (
-                        ""
+                        " "
                       )}
                     </div>
                   </div>

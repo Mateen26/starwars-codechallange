@@ -20,7 +20,6 @@ const People = () => {
     setLoading,
     setSelectedDetailsType,
   } = useDataContext();
-  console.log("🚀 ~ loadedData:", loadedData);
   const imgURL = "https://starwars-visualguide.com/assets/img/characters/";
 
   useEffect(() => {

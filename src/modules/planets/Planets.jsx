@@ -20,7 +20,6 @@ const Planets = () => {
     setLoading,
     setSelectedDetailsType,
   } = useDataContext();
-  console.log("🚀 ~ loadedData:", loadedData);
   const imgURL = "https://starwars-visualguide.com/assets/img/planets/";
   const isMobile = useMediaQuery({ maxWidth: 767 });
 

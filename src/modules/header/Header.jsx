@@ -42,12 +42,6 @@ const Header = () => {
               <li>
                 <NavLink to="/starships">Starships</NavLink>
               </li>
-              <li>
-                <NavLink to="/films">Films</NavLink>
-              </li>
-              <li>
-                <NavLink to="/vehicles">Vehicles</NavLink>
-              </li>
             </ul>
           </div>
         </div>

@@ -3,10 +3,22 @@ import { useDataContext } from "../../context/DataContext";
 import starDestroyer from "../../assets/images/Star-Destroyer.jpeg";
 import { useMediaQuery } from "react-responsive";
 import { Spinner } from "react-bootstrap";
+import { FetchData } from "../../helper/FetchData";
+import { useNavigate } from "react-router-dom";
 
 const StarShips = () => {
-  const { loadedData, loading, loadData, loadMore } = useDataContext();
-  console.log("🚀 ~ loadedData:", loadedData);
+  const navigate = useNavigate();
+
+  const {
+    loadedData,
+    loading,
+    loadData,
+    loadMore,
+    setSelectedData,
+    setSelectedCharacter,
+    setLoading,
+    setSelectedDetailsType,
+  } = useDataContext();
   const imgURL = "https://starwars-visualguide.com/assets/img/starships/";
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
@@ -32,6 +44,26 @@ const StarShips = () => {
   const handleLoadMore = () => {
     if (loadedData.next) {
       loadMore(loadedData.next);
+    }
+  };
+
+  const handleEntryClick = async (starShips) => {
+    try {
+      setLoading(true);
+      setSelectedDetailsType("starships");
+      setSelectedCharacter(starShips);
+      const result = await FetchData(starShips);
+      if (result) {
+        setSelectedData(result);
+        navigate("/details");
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setSelectedData([]);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Failed to fetch data:", error);
     }
   };
 
@@ -93,9 +125,12 @@ const StarShips = () => {
                             <p className="card-text">
                               Cost In Credits: {starShips?.cost_in_credits}
                             </p>
-                            <p className="card-text">
-                              Hyperdrive Rating: {starShips?.hyperdrive_rating}
-                            </p>
+                            <button
+                              className="btn-container-details"
+                              onClick={() => handleEntryClick(starShips)}
+                            >
+                              Details
+                            </button>
                           </div>
                         </div>
                       </div>
