@@ -5,7 +5,6 @@ import tatooine from "../../assets/images/Tatooine.jpg";
 import Coruscant from "../../assets/images/planet2.jpg";
 import raxus from "../../assets/images/Raxus_Prime.webp";
 import starDestroyer from "../../assets/images/Star-Destroyer.jpeg";
-import xwing from "../../assets/images/x-wing.webp";
 import Luxury3000 from "../../assets/images/may41.webp";
 import RazorCrest from "../../assets/images/ship-tie.webp";
 export const characterData = [
